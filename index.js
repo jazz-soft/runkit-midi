@@ -1,4 +1,9 @@
-const { ValueViewerSymbol } = require("@runkit/value-viewer");
+var vvs = 'ValueViewerSymbol';
+try {
+  const { ValueViewerSymbol } = require("@runkit/value-viewer");
+  vvs = ValueViewerSymbol;
+}
+catch (err) {}
 
 module.exports = function(arg) {
   var html = `
@@ -14,7 +19,7 @@ var player = new JZZ.gui.Player({ file: true });
 </body>
 `;
   return {
-    [ValueViewerSymbol]: {
+    [vvs]: {
       title: "MIDI Player",
       HTML: html
     }
