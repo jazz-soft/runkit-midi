@@ -7,14 +7,20 @@ catch (err) {}
 
 module.exports = function(arg) {
   var html = `
-<body>
+<head>
 <script src='https://cdn.jsdelivr.net/npm/jzz'></script>
 <script src='https://cdn.jsdelivr.net/npm/jzz-synth-tiny'></script>
 <script src='https://cdn.jsdelivr.net/npm/jzz-midi-smf'></script>
 <script src='https://cdn.jsdelivr.net/npm/jzz-gui-player'></script>
+<style>
+ body { min-width:270px; padding:10px; margin:0; min-height:80px; }
+</style>
+</head>
+<body>
+<div id=player></div>
 <script>
 JZZ.synth.Tiny.register('Web Audio');
-var player = new JZZ.gui.Player({ file: true });
+var player = new JZZ.gui.Player({ at: 'player', file: true });
 </script>
 </body>
 `;
