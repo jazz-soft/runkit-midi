@@ -1,2 +1,2 @@
-var player = require("runkit-midi-player");
-player();
+var midi = require("runkit-midi");
+midi();
