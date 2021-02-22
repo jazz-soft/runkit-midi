@@ -1,4 +1,4 @@
-# runkit-midi-player
+# runkit-midi
 RunKit custom viewer for MIDI files
 
 [![npm](https://img.shields.io/npm/v/runkit-midi.svg)](https://www.npmjs.com/package/runkit-midi)
