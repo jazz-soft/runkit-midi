@@ -4,8 +4,24 @@ try {
   vvs = ValueViewerSymbol;
 }
 catch (err) {}
+const JZZ = require('jzz');
+require('jzz-midi-smf')(JZZ);
 
 module.exports = function(arg) {
+  var data = '';
+  var link = '';
+  var out = {}
+  if (arg) {
+    try {
+      data = JZZ.MIDI.SMF(arg);
+    }
+    catch (err) {
+      out.error = err.message;
+    }
+  }
+  if (data) {
+    data = chop(JZZ.lib.toBase64(data.dump()), 80);
+  }
   var html = `
 <head>
 <script src='https://cdn.jsdelivr.net/npm/jzz'></script>
@@ -19,15 +35,32 @@ module.exports = function(arg) {
 <body>
 <div id=player></div>
 <script>
+var link = '${link}';
+var data = '${data}';
 JZZ.synth.Tiny.register('Web Audio');
-var player = new JZZ.gui.Player({ at: 'player', file: true });
+var player = new JZZ.gui.Player({ at: 'player', file: !data.length, link: !!data.length });
+if (data) {
+  player.load(new JZZ.MIDI.SMF(JZZ.lib.fromBase64(data)));
+  if (link) player.setUrl(link);
+  else player.setUrl('data:audio/midi;base64,' + data, 'runkit-midi');
+}
 </script>
 </body>
 `;
-  return {
-    [vvs]: {
-      title: "MIDI Player",
-      HTML: html
-    }
+  out[vvs] = {
+    title: "MIDI Player",
+    HTML: html
   };
+  return out;
 };
+
+function chop(s, n) {
+  var t = '';
+  while (s.length) {
+    if (t.length) t += '\\\n';
+    t += s.substr(0, n);
+    s = s.substr(n);
+  }
+  return t;
+}
+

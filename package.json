@@ -1,6 +1,6 @@
 {
   "name": "runkit-midi",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "coming soon...",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,7 @@
   },
   "keywords": [
     "midi",
+    "player",
     "runkit"
   ],
   "author": "jazz-soft (https://jazz-soft.net/)",
