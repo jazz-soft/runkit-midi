@@ -29,20 +29,12 @@ module.exports = function(arg) {
     data = chop(JZZ.lib.toBase64(data.dump()), 80);
   }
   var html = `
-<head>
 <script src='https://cdn.jsdelivr.net/npm/jzz'></script>
 <script src='https://cdn.jsdelivr.net/npm/jzz-synth-tiny'></script>
 <script src='https://cdn.jsdelivr.net/npm/jzz-midi-smf'></script>
 <script src='https://cdn.jsdelivr.net/npm/jzz-gui-player'></script>
-<style>
- .outer { min-width:270px; padding:10px; margin:0; min-height:80px; }
-</style>
-</head>
-<body>
-<div class=outer>
 <div id=player></div>
-<p class=info>...</p>
-</div>
+<p><a href=https://github.com/jazz-soft/runkit-midi target=_blank style='color:#bbb;font-size:small;font-family:Arial,Helvetica,sans-serif;'>runkit-midi at GitHub</a></p>
 <script>
 var link = '${link}';
 var data = '${data}';
@@ -54,7 +46,6 @@ if (data) {
   else player.setUrl('data:audio/midi;base64,' + data, 'runkit-midi');
 }
 </script>
-</body>
 `;
   out[vvs] = {
     title: "MIDI Player",
