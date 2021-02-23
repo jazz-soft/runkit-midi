@@ -13,13 +13,19 @@ module.exports = function(arg) {
   var out = {}
   if (arg) {
     try {
-      data = JZZ.MIDI.SMF(arg);
+      data = JZZ.MIDI.SMF(arg.dump());
     }
     catch (err) {
-      out.error = err.message;
+      try {
+        data = JZZ.MIDI.SMF(arg);
+      }
+      catch (err) {
+        out.error = err.message;
+      }
     }
   }
   if (data) {
+    populate(out, data);
     data = chop(JZZ.lib.toBase64(data.dump()), 80);
   }
   var html = `
@@ -29,11 +35,14 @@ module.exports = function(arg) {
 <script src='https://cdn.jsdelivr.net/npm/jzz-midi-smf'></script>
 <script src='https://cdn.jsdelivr.net/npm/jzz-gui-player'></script>
 <style>
- body { min-width:270px; padding:10px; margin:0; min-height:80px; }
+ .outer { min-width:270px; padding:10px; margin:0; min-height:80px; }
 </style>
 </head>
 <body>
+<div class=outer>
 <div id=player></div>
+<p class=info>...</p>
+</div>
 <script>
 var link = '${link}';
 var data = '${data}';
@@ -64,3 +73,15 @@ function chop(s, n) {
   return t;
 }
 
+function populate(x, m) {
+  var i, j, k;
+  var h = { type: m.type, tracks: m.length };
+  if (m.ppqn) h.ppqn = m.ppqn;
+  else { h.fps = m.fps; h.ppf = m.ppf; }
+  x.header = h;
+  for (i = 0; i < m.length; i++) {
+    k = 'track' + (i + 1);
+    x[k] = [];
+    for (j = 0; j < m[i].length; j++) x[k].push([m[i][j].tt, m[i][j].toString()]);
+  }  
+}

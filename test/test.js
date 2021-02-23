@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const player = require('..');
+const rkmidi = require('..');
 const JZZ = require('jzz');
 require('jzz-midi-smf')(JZZ);
 
@@ -16,8 +16,8 @@ smf.push(trk);
 trk.smfBPM(90).ch(0).program(16)
    .tick(96).noteOn('C6', 127).tick(96).noteOn('Eb6', 127)
    .tick(96).noteOn('G6', 127).tick(96).noteOn('C7', 127)
-   .tick(96).noteOff('C6').noteOff('Eb6').noteOff('G6').noteOff('C7')
-   .tick(96).smfEndOfTrack();
+   .tick(192).noteOff('C6').noteOff('Eb6').noteOff('G6')
+   .noteOff('C7').tick(96).smfEndOfTrack();
 
 test('test3.html', smf);
 
@@ -25,7 +25,8 @@ test('test4.html', smf.dump());
 
 function nop() {}
 async function test(name, arg) {
-  var data = await player(arg).ValueViewerSymbol.HTML;
+  var data = await rkmidi(arg);
+  if (data.error) console.log('error:', data.error);
   var fname = path.join(__dirname, name);
-  fs.writeFile(path.join(__dirname, name), data, nop);
+  fs.writeFile(path.join(__dirname, name), data.ValueViewerSymbol.HTML, nop);
 }
