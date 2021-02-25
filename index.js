@@ -12,6 +12,11 @@ module.exports = function(arg) {
   var link = '';
   var out = {}
   if (arg) {
+    if (typeof arg == 'string') {
+      if (arg.match(/^data:([a-z0-9_]+\/[a-z0-9_]+)?;base64,/i)) {
+        arg = JZZ.lib.fromBase64(arg.substring(arg.indexOf(',') + 1));
+      }
+    }
     try {
       data = JZZ.MIDI.SMF(arg.dump());
     }
