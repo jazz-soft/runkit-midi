@@ -14,5 +14,5 @@ kD5/GYA+QACQPH8ygDxAAJA+fzKAPkAAkEB/MoBAQACQQH8ygEBAAJBAfzKAQEAZ\
 kEB/GYBAQACQPn8ygD5AAJA+fzKAPkAAkEB/MoBAQACQPn8ygD5AAJA8f2RAZABD\
 ZABIf1qAPEAAQEAAQ0AASEAK/y8A';
 
-rkmidi(data);
+await rkmidi(data);
 // click the [▶run] button... ↓
