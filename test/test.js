@@ -4,7 +4,8 @@ const rkmidi = require('..');
 const JZZ = require('jzz');
 require('jzz-midi-smf')(JZZ);
 
-var url = 'https://github.com/jazz-soft/test-midi-files/raw/main/midi/test-c-major-scale.mid';
+var url = 'https://github.com/jazz-soft/test-midi-files/raw/main/midi/test-c-major-scale.mid'; // 302 redirect
+//var url = 'https://raw.githubusercontent.com/jazz-soft/test-midi-files/main/midi/test-c-major-scale.mid'
 
 var smf = new JZZ.MIDI.SMF(0, 96);
 var trk = new JZZ.MIDI.SMF.MTrk();
@@ -39,7 +40,7 @@ test('test3.html', smf);
 
 test('test4.html', smf.dump());
 
-test('test5.html', 'garbage...');
+test('test5.html', 'http://127.0.0.1:8887/test-karaoke-kar.mid');
 
 function nop() {}
 
@@ -47,6 +48,5 @@ async function test(name, arg) {
   var data = await rkmidi(arg);
   console.log(name);
   if (data.error) console.log('error:', data.error);
-  var fname = path.join(__dirname, name);
-  fs.writeFile(path.join(__dirname, fname), data.ValueViewerSymbol.HTML, nop);
+  fs.writeFile(path.join(__dirname, name), data.ValueViewerSymbol.HTML, nop);
 }

@@ -4,10 +4,12 @@ try {
   vvs = ValueViewerSymbol;
 }
 catch (err) {/**/}
+const http = require('http');
+const https = require('https');
 const JZZ = require('jzz');
 require('jzz-midi-smf')(JZZ);
 
-module.exports = function(arg) {
+module.exports = async function(arg) {
   var data = '';
   var link = '';
   var out = {}
@@ -16,16 +18,27 @@ module.exports = function(arg) {
       if (arg.match(/^data:([a-z0-9_]+\/[a-z0-9_]+)?;base64,/i)) {
         arg = JZZ.lib.fromBase64(arg.substring(arg.indexOf(',') + 1));
       }
+      else if (arg.match(/^https?:/i)) {
+        link = arg;
+        try {
+          arg = await download(arg);
+        }
+        catch (err) {
+          out.error = err.message;
+        }
+      }
     }
-    try {
-      data = JZZ.MIDI.SMF(arg.dump());
-    }
-    catch (err) {
+    if (!out.error) {
       try {
-        data = JZZ.MIDI.SMF(arg);
+        data = JZZ.MIDI.SMF(arg.dump());
       }
       catch (err) {
-        out.error = err.message;
+        try {
+          data = JZZ.MIDI.SMF(arg);
+        }
+        catch (err) {
+          out.error = err.message;
+        }
       }
     }
   }
@@ -80,4 +93,26 @@ function populate(x, m) {
     x[k] = [];
     for (j = 0; j < m[i].length; j++) x[k].push([m[i][j].tt, m[i][j].toString()]);
   }  
+}
+
+function get(url, resolve, reject) {
+  var htt = url.match(/^http:/i) ? http : https;
+  htt.get(url, (res) => {
+    if(res.statusCode === 301 || res.statusCode === 302) {
+      return get(res.headers.location, resolve, reject)
+    }
+    if(res.statusCode != 200) {
+      reject(new Error(`HTTP ${res.statusCode}`));
+    }
+    res.setEncoding('binary');
+    var data = '';
+    res.on('data', (chunk) => { data += chunk; });
+    res.on('end', () => { resolve(data); });
+  }).on('error', (err) => {
+    reject(err);
+  });
+}
+
+async function download(url) {
+  return new Promise((resolve, reject) => get(url, resolve, reject));
 }
