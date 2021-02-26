@@ -42,10 +42,11 @@ test('test4.html', smf.dump());
 test('test5.html', 'garbage...');
 
 function nop() {}
+
 async function test(name, arg) {
   var data = await rkmidi(arg);
   console.log(name);
   if (data.error) console.log('error:', data.error);
   var fname = path.join(__dirname, name);
-  fs.writeFile(path.join(__dirname, name), data.ValueViewerSymbol.HTML, nop);
+  fs.writeFile(path.join(__dirname, fname), data.ValueViewerSymbol.HTML, nop);
 }

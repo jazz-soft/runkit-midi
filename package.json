@@ -4,7 +4,8 @@
   "description": "coming soon...",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "test": "node test/test.js"
   },
   "keywords": [
     "midi",
@@ -17,6 +18,9 @@
     "jzz-gui-player": "^1.4.6",
     "jzz-midi-smf": "^1.4.5",
     "jzz-synth-tiny": "^1.2.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0"
   },
   "runkitExampleFilename": "runkit.js",
   "repository": {

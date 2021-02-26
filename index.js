@@ -3,7 +3,7 @@ try {
   const { ValueViewerSymbol } = require("@runkit/value-viewer");
   vvs = ValueViewerSymbol;
 }
-catch (err) {}
+catch (err) {/**/}
 const JZZ = require('jzz');
 require('jzz-midi-smf')(JZZ);
 
