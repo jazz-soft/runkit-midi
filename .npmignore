@@ -1,4 +1,5 @@
 test*
+media
 .*
 Gruntfile.js
 *.html
