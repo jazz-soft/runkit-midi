@@ -4,9 +4,6 @@ const rkmidi = require('..');
 const JZZ = require('jzz');
 require('jzz-midi-smf')(JZZ);
 
-var url = 'https://github.com/jazz-soft/test-midi-files/raw/main/midi/test-c-major-scale.mid'; // 302 redirect
-//var url = 'https://raw.githubusercontent.com/jazz-soft/test-midi-files/main/midi/test-c-major-scale.mid'
-
 var smf = new JZZ.MIDI.SMF(0, 96);
 var trk = new JZZ.MIDI.SMF.MTrk();
 smf.push(trk);
@@ -16,31 +13,13 @@ trk.smfBPM(90).ch(0).program(16)
    .tick(192).noteOff('C6').noteOff('Eb6').noteOff('G6')
    .noteOff('C7').tick(96).smfEndOfTrack();
 
-var data = 'data:audio/midi;base64,\
-TVRoZAAAAAYAAQADAGRNVHJrAAAAGgD/AwtMaXR0bGUgTGFtZQD/UQMKLCsA/y8A\
-TVRyawAAAPMA/wMGTHlyaWNzAP8BGEBUTWFyeSBXYXMgQSBMaXR0bGUgTGFtZWT/\
-AQNcTWFL/wEDcnkgGf8BBHdhcyAy/wECYSAy/wEDbGl0Mv8BBHRsZSAy/wEFbGFt\
-ZSxk/wEEL0xpdDL/AQR0bGUgMv8BBWxhbWUsZP8BBC9MaXQy/wEEdGxlIDL/AQVs\
-YW1lLGT/AQMvTWFL/wEDcnkgGf8BBHdhcyAy/wECYSAy/wEDbGl0Mv8BBHRsZSAy\
-/wEFbGFtZSwy/wEDL0EgMv8BA2xpdDL/AQR0bGUgMv8BBWxhbWUgMv8BBHdhcyAy\
-/wEEc2hlIQD/LwBNVHJrAAAA8gD/AwVNdXNpYwDAC2SQQH9LgEBAAJA+fxmAPkAA\
-kDx/MoA8QACQPn8ygD5AAJBAfzKAQEAAkEB/MoBAQACQQH9agEBACpA+fzKAPkAA\
-kD5/MoA+QACQPn9agD5ACpBAfzKAQEAAkEN/MoBDQACQQ39agENACpBAf0uAQEAA\
-kD5/GYA+QACQPH8ygDxAAJA+fzKAPkAAkEB/MoBAQACQQH8ygEBAAJBAfzKAQEAZ\
-kEB/GYBAQACQPn8ygD5AAJA+fzKAPkAAkEB/MoBAQACQPn8ygD5AAJA8f2RAZABD\
-ZABIf1qAPEAAQEAAQ0AASEAK/y8A';
-
 test('test0.html');
 
-test('test1.html', data);
+test('test1.html', smf);
 
-test('test2.html', url);
+test('test2.html', smf.dump());
 
-test('test3.html', smf);
-
-test('test4.html', smf.dump());
-
-test('test5.html', 'http://127.0.0.1:8887/test-karaoke-kar.mid');
+test('test3.html', Buffer.from(smf.dump(), 'binary'));
 
 function nop() {}
 
