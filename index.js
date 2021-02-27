@@ -9,7 +9,6 @@ require('jzz-midi-smf')(JZZ);
 
 module.exports = function(arg) {
   var data = '';
-  var link = '';
   var out = {}
   if (arg) {
     try {

@@ -24,7 +24,7 @@ test('test3.html', Buffer.from(smf.dump(), 'binary'));
 function nop() {}
 
 async function test(name, arg) {
-  var data = await rkmidi(arg);
+  var data = rkmidi(arg);
   console.log(name);
   if (data.error) console.log('error:', data.error);
   fs.writeFile(path.join(__dirname, name), data.ValueViewerSymbol.HTML, nop);
