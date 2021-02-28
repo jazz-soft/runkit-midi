@@ -69,7 +69,12 @@ function populate(x, m) {
   x.header = h;
   for (i = 0; i < m.length; i++) {
     k = 'track' + (i + 1);
-    x[k] = [];
-    for (j = 0; j < m[i].length; j++) x[k].push([m[i][j].tt, m[i][j].toString()]);
+    if (m[i].type == 'MTrk') {
+      x[k] = [];
+      for (j = 0; j < m[i].length; j++) x[k].push([m[i][j].tt, m[i][j].toString()]);
+    }
+    else {
+      x[k] = 'Not a MIDI track';
+    }
   }  
 }
