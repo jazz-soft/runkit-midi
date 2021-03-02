@@ -1,6 +1,6 @@
 {
   "name": "runkit-midi",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "MIDI player/viewer for RunKit",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "dependencies": {
     "jzz": "^1.2.3",
     "jzz-gui-player": "^1.4.6",
-    "jzz-midi-smf": "^1.4.7",
+    "jzz-midi-smf": "^1.4.8",
     "jzz-synth-tiny": "^1.2.4"
   },
   "devDependencies": {

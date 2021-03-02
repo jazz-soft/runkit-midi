@@ -19,7 +19,11 @@ test('test1.html', smf);
 
 test('test2.html', smf.dump());
 
-test('test3.html', Buffer.from(smf.dump(), 'binary'));
+test('test3.html', smf.toBuffer());
+
+test('test4.html', smf.toArrayBuffer());
+
+test('test5.html', smf.toUint8Array());
 
 function nop() {}
 
