@@ -4,11 +4,11 @@ MIDI player/viewer for RunKit
 [![npm](https://img.shields.io/npm/v/runkit-midi.svg)](https://www.npmjs.com/package/runkit-midi)
 [![Try runkit-midi on RunKit](https://badge.runkitcdn.com/runkit-midi.svg)](https://npm.runkit.com/runkit-midi)
 
-### Live MIDI demo on RunKit
+## Your own live MIDI demo on RunKit
 
 [![runkit](https://github.com/jazz-soft/runkit-midi/raw/main/media/runkit.png)](https://npm.runkit.com/runkit-midi)
 
-Have you ever wondered what is that `RunKit` button on your NPM page?
+Have you ever wondered what was that `RunKit` button on your NPM page for?
 
 Does your project generate MIDI files?
 
