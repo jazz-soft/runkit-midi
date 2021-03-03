@@ -16,7 +16,7 @@ You may want to enable a live MIDI demo on your project page.
 
 No install required!
 
-You visitors will be able to play and view the contents of generated MIDI files as on the image below:
+Your visitors will be able to play and view the contents of generated MIDI files as on the image below:
 
 [![screenshot](https://github.com/jazz-soft/runkit-midi/raw/main/media/rkmidi.png)](https://npm.runkit.com/runkit-midi)
 
