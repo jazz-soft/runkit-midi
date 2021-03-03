@@ -1,6 +1,6 @@
 {
   "name": "runkit-midi",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "MIDI player/viewer for RunKit",
   "main": "index.js",
   "scripts": {
