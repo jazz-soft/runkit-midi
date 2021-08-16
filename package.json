@@ -1,11 +1,11 @@
 {
   "name": "runkit-midi",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "MIDI player/viewer for RunKit",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
-    "test": "node test/test.js"
+    "lint": "eslint index.js",
+    "test": "mocha test/mocha.js"
   },
   "keywords": [
     "midi",
@@ -20,7 +20,8 @@
     "jzz-synth-tiny": "^1.2.7"
   },
   "devDependencies": {
-    "eslint": "^7.32.0"
+    "eslint": "^7.32.0",
+    "mocha": "^9.0.3"
   },
   "runkitExampleFilename": "runkit.js",
   "repository": {
