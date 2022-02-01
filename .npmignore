@@ -1,7 +1,5 @@
+.*
 test*
 media
-.*
 Gruntfile.js
-*.html
-*.bat
 !test
