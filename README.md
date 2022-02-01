@@ -9,7 +9,7 @@ MIDI player/viewer for RunKit
 
 [![runkit](https://github.com/jazz-soft/runkit-midi/raw/main/media/runkit.png)](https://npm.runkit.com/runkit-midi)
 
-Have you ever wondered what was that `RunKit` button on your NPM page for?
+Have you ever wondered what that `RunKit` button on your NPM page was for?
 
 Does your project generate MIDI files?
 
