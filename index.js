@@ -12,7 +12,11 @@ module.exports = function(arg) {
   var out = {}
   if (arg) {
     try {
-      data = JZZ.MIDI.SMF(arg.dump());
+      arg = arg.dump();
+    }
+    catch (err) {/**/}
+    try {
+      data = JZZ.MIDI.Clip(arg);
     }
     catch (err) {
       try {
@@ -39,8 +43,14 @@ var data = '${data}';
 JZZ.synth.Tiny.register('Web Audio');
 var player = new JZZ.gui.Player({ at: 'player', file: !data.length, link: !!data.length });
 if (data) {
-  player.load(new JZZ.MIDI.SMF(JZZ.lib.fromBase64(data)));
-  player.setUrl('data:audio/midi;base64,' + data, 'runkit-midi');
+  try {
+    player.load(new JZZ.MIDI.Clip(JZZ.lib.fromBase64(data)));
+    player.setUrl('data:audio/midi2;base64,' + data, 'runkit-midi');
+  }
+  catch (e) {
+    player.load(new JZZ.MIDI.SMF(JZZ.lib.fromBase64(data)));
+    player.setUrl('data:audio/midi;base64,' + data, 'runkit-midi');
+  }
 }
 </script>
 `;
@@ -62,19 +72,25 @@ function chop(s, n) {
 }
 
 function populate(x, m) {
-  var i, j, k;
-  var h = { type: m.type, tracks: m.length };
-  if (m.ppqn) h.ppqn = m.ppqn;
-  else { h.fps = m.fps; h.ppf = m.ppf; }
-  x.header = h;
-  for (i = 0; i < m.length; i++) {
-    k = 'track' + (i + 1);
-    if (m[i].type == 'MTrk') {
-      x[k] = [];
-      for (j = 0; j < m[i].length; j++) x[k].push([m[i][j].tt, m[i][j].toString()]);
-    }
-    else {
-      x[k] = 'Not a MIDI track';
-    }
-  }  
+  var i, j, k, h;
+  if (m instanceof JZZ.MIDI.Clip) {
+    h = { type: 'clip', ppqn: m.length };
+    x.header = h;
+  }
+  else {
+    h = { type: m.type, tracks: m.length };
+    if (m.ppqn) h.ppqn = m.ppqn;
+    else { h.fps = m.fps; h.ppf = m.ppf; }
+    x.header = h;
+    for (i = 0; i < m.length; i++) {
+      k = 'track' + (i + 1);
+      if (m[i].type == 'MTrk') {
+        x[k] = [];
+        for (j = 0; j < m[i].length; j++) x[k].push([m[i][j].tt, m[i][j].toString()]);
+      }
+      else {
+        x[k] = 'Not a MIDI track';
+      }
+    }  
+  }
 }
