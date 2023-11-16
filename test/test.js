@@ -13,6 +13,13 @@ trk.smfBPM(90).ch(0).program(16)
    .tick(192).noteOff('C6').noteOff('Eb6').noteOff('G6')
    .noteOff('C7').tick(96).smfEndOfTrack();
 
+var clp = new JZZ.MIDI.Clip();
+clp.gr(0).ch(0).program(16)
+   .tick(96).noteOn('C6', 127).tick(96).noteOn('Eb6', 127)
+   .tick(96).noteOn('G6', 127).tick(96).noteOn('C7', 127)
+   .tick(192).noteOff('C6').noteOff('Eb6').noteOff('G6')
+   .noteOff('C7').tick(96);
+
 test('test0.html');
 
 test('test1.html', smf);
@@ -24,6 +31,10 @@ test('test3.html', smf.toBuffer());
 test('test4.html', smf.toArrayBuffer());
 
 test('test5.html', smf.toUint8Array());
+
+test('test6.html', clp);
+
+test('test7.html', clp.dump());
 
 function nop() {}
 
