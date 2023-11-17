@@ -1,5 +1,6 @@
 .*
 test*
+coverage
 media
 Gruntfile.js
 !test

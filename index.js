@@ -45,11 +45,11 @@ var player = new JZZ.gui.Player({ at: 'player', file: !data.length, link: !!data
 if (data) {
   try {
     player.load(new JZZ.MIDI.Clip(JZZ.lib.fromBase64(data)));
-    player.setUrl('data:audio/midi2;base64,' + data, 'runkit-midi');
+    player.setUrl('data:audio/midi2;base64,' + data, 'runkit-midi.midi2');
   }
   catch (e) {
     player.load(new JZZ.MIDI.SMF(JZZ.lib.fromBase64(data)));
-    player.setUrl('data:audio/midi;base64,' + data, 'runkit-midi');
+    player.setUrl('data:audio/midi;base64,' + data, 'runkit-midi.mid');
   }
 }
 </script>
