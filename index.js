@@ -74,7 +74,7 @@ function chop(s, n) {
 function populate(x, m) {
   var i, j, k, h;
   if (m instanceof JZZ.MIDI.Clip) {
-    h = { type: 'clip', ppqn: m.length };
+    h = { type: 'clip', ppqn: m.ppqn };
     x.header = h;
   }
   else {
