@@ -13,6 +13,7 @@ smf1.push(trk1);
 smf2.push(trk1);
 smf2.push(trk2);
 trk1.noteOn(0, 'C6', 127).tick(96).noteOff(0, 'C6');
+clip.header.umpBPM(0, 100);
 clip.noteOn(0, 0, 'C6', 127).tick(96).noteOff(0, 0, 'C6');
 
 describe('MIDI files', function() {

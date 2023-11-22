@@ -76,6 +76,12 @@ function populate(x, m) {
   if (m instanceof JZZ.MIDI.Clip) {
     h = { type: 'clip', ppqn: m.ppqn };
     x.header = h;
+    h[0] = [0,  JZZ.UMP.umpTicksPQN(m.ppqn).toString()];
+    for (j = 0; j < m.header.length; j++) h[j + 1] = [m.header[j].tt, m.header[j].toString()];
+    k = 'data';
+    x[k] = [];
+    x[k].push([0, JZZ.UMP.umpStartClip().toString()]);
+    for (j = 0; j < m.length; j++) x[k].push([m[j].tt, m[j].toString()]);
   }
   else {
     h = { type: m.type, tracks: m.length };
