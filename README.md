@@ -1,5 +1,5 @@
-# runkit-midi
-MIDI player/viewer for RunKit
+# 🪦runkit is dead
+What a pity!
 
 [![npm](https://img.shields.io/npm/v/runkit-midi.svg)](https://www.npmjs.com/package/runkit-midi)
 [![npm](https://img.shields.io/npm/dt/runkit-midi.svg)](https://www.npmjs.com/package/runkit-midi)
